@@ -1,5 +1,7 @@
 package com.arturlogan.animal_service.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -22,6 +24,9 @@ public class Animal {
     private Integer idadeEstimada;
 
     @Column
+    private String especie;
+
+    @Column
     private Date dataEntrada;
 
     @Column
@@ -35,6 +40,10 @@ public class Animal {
 
     @Column
     private String porte;
+
+    @ManyToOne
+    @JsonBackReference
+    private Funcionario funcionario;
 
     public Long getId() {
         return id;
@@ -106,5 +115,21 @@ public class Animal {
 
     public void setPorte(String porte) {
         this.porte = porte;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 }
